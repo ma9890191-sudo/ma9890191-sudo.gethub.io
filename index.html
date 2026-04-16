@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>هدية لشهوده 💖</title>
+
+<style>
+body{
+  margin:0;
+  font-family:Cairo,sans-serif;
+  background: linear-gradient(135deg,#ffe4ec,#ffd6e7);
+  color:#6b2d4d;
+  text-align:center;
+  overflow:hidden;
+}
+
+/* الصفحات */
+.page{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.card{
+  background: rgba(255,255,255,0.75);
+  padding:30px;
+  border-radius:20px;
+  max-width:500px;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease;
+}
+
+/* زرار */
+button{
+  margin-top:20px;
+  padding:12px 25px;
+  border:none;
+  border-radius:12px;
+  background:#ff7aa2;
+  color:white;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:#ff4f81;
+  transform: scale(1.05);
+}
+
+/* الفيديو (صغير وفي النص) */
+video{
+  width:70%;
+  max-width:320px;
+  border-radius:15px;
+  margin-top:10px;
+}
+
+/* القلوب */
+.heart{
+  position:fixed;
+  bottom:-20px;
+  font-size:20px;
+  animation: float 6s linear infinite;
+  opacity:0.7;
+}
+
+@keyframes float{
+  from{transform:translateY(0); opacity:0.7;}
+  to{transform:translateY(-110vh); opacity:0;}
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:scale(0.95);}
+  to{opacity:1; transform:scale(1);}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 اختياري موسيقى -->
+<audio id="music" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- 🩷 الصفحة الأولى -->
+<div id="page1" class="page">
+  <div class="card">
+    <p>
+      انتي مش بس صحبتي انتي اختي واغلى حد في حياتي يا شهوده 💖<br>
+      حبيت اعملك حاجة بسيطة تعبر عن حبي ليكي 🌸
+    </p>
+
+    <button onclick="showVideo()">اضغطي هنا يا شهوده 💌</button>
+  </div>
+</div>
+
+<!-- 🩷 الصفحة الثانية -->
+<div id="page2" class="page" style="display:none;">
+  <div class="card">
+
+    <video controls>
+      <source src="video.mp4.mp4" type="video/mp4">
+    </video>
+
+    <p style="margin-top:15px; font-weight:700;">
+      بحبك اوي وممتنة انك في حياتي يا اغلى شهوده 💖🌸
+    </p>
+
+    <button onclick="goBack()">رجوع 💌</button>
+
+  </div>
+</div>
+
+<script>
+
+/* تشغيل الموسيقى */
+window.onload = function(){
+  const music = document.getElementById("music");
+  music.volume = 0.3;
+  music.play().catch(()=>{});
+}
+
+/* فتح الصفحة التانية */
+function showVideo(){
+  document.getElementById("page1").style.display="none";
+  document.getElementById("page2").style.display="flex";
+}
+
+/* الرجوع */
+function goBack(){
+  document.getElementById("page2").style.display="none";
+  document.getElementById("page1").style.display="flex";
+}
+
+/* قلوب */
+setInterval(()=>{
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerHTML="💖";
+  heart.style.left = Math.random()*100 + "vw";
+  heart.style.fontSize = (Math.random()*20 + 15) + "px";
+  document.body.appendChild(heart);
+
+  setTimeout(()=>heart.remove(),6000);
+},500);
+
+</script>
+
+</body>
+</html>
